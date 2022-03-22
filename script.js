@@ -1,8 +1,8 @@
 'use strict';
 
 var videoElement = document.querySelector('video');
-var height = { min: 200, ideal: 250, max: 400 }
-var width = { min: 250, ideal: 333, max: 500 }
+var height = { min: 200, ideal: 250, max: window.innerHeight }
+var width = { min: 250, ideal: 333, max: window.innerWidth - 30 }
 var videoSelect = document.querySelector('select#videoSource');
 
 let overlay = document.getElementById("card-overlayer")
