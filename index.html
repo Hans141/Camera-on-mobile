@@ -41,8 +41,19 @@ h1 {
 select {
   width: 150px;
 }
-video {
-  margin: 10px 0 0 0;
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#wrap {
+  position: relative;
+  padding: 10px
+}
+#card-overlayer {
+  position: absolute;
 }
 </style>
 
@@ -51,15 +62,14 @@ video {
 <body>
 
 <div id="container">
-  <div class="select">
-    <label for="audioSource">Audio source: </label><select id="audioSource"></select>
-  </div>
 
   <div class="select">
     <label for="videoSource">Video source: </label><select id="videoSource"></select>
   </div>
-
-  <video autoplay muted playsinline></video>
+  <div id="wrap">
+    <img src='Subtract.png' alt="subtract_image" id="card-overlayer" />
+    <video autoplay muted playsinline></video>
+  </div>
 
   <script async src="script.js"></script>
 </div>
