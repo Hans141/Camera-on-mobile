@@ -46,11 +46,17 @@ function gotStream(stream) {
   videoSelect.selectedIndex = [...videoSelect.options].
     findIndex(option => option.text === stream.getVideoTracks()[0].label);
   videoElement.srcObject = stream;
-videoElement.addEventListener('loadedmetadata', function(e){
+  videoElement.addEventListener('loadedmetadata', function(e){
   console.log(videoElement.videoWidth, videoElement.videoHeight);
   console.log(overlay)
   overlay.style.width = videoElement.videoWidth + "px";
   overlay.style.height = videoElement.videoHeight + "px";
+  if(isMobile) {
+  videoElement.style.height = "250px"
+  overlay.style.height = 250 + "px";
+  overlay.style.width = videoElement.videoWidth / videoElement.videoHeight * 250 + "px";
+
+  }
 });
 }
 
