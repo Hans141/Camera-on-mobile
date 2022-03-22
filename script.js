@@ -51,7 +51,7 @@ function gotStream(stream) {
   console.log(overlay)
   overlay.style.width = videoElement.videoWidth + "px";
   overlay.style.height = videoElement.videoHeight + "px";
-  if(!isMobile) {
+  if(isMobile) {
   videoElement.style.height = "250px"
   videoElement.style.width = "333px"
   overlay.style.height = 250 + "px";
