@@ -105,8 +105,14 @@ const getCameraSelection = async () => {
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
     console.log('videoDevices', videoDevices)
     let x = videoDevices.length;
-    let y = videoDevices[0].label;
-    let z = videoDevices[1].label;
+    let y = '';
+    let z = '';
+    if (videoDevices.length >= 1) {
+      y = videoDevices[0].label
+    }
+    if (videoDevices.length >= 2) {
+      z = videoDevices[1].label
+    }
     message.textContent = x + "  " + y + "  " + z
     const options = videoDevices.map(videoDevice => {
       return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
