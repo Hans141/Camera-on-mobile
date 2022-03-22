@@ -100,18 +100,21 @@ const handleStream = (stream) => {
 //   console.log('first', first)
 // })
 const getCameraSelection = async () => {
-  const devices = await navigator.mediaDevices.enumerateDevices();
-  const videoDevices = devices.filter(device => device.kind === 'videoinput');
-  console.log('videoDevices', videoDevices)
-  let x = videoDevices.length;
-  let y = videoDevices[0].label;
-  let z = videoDevices[1].label;
-  message.textContent = x + "  " + y + "  " + z
-
-  const options = videoDevices.map(videoDevice => {
-    return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
-  });
-  cameraOptions.innerHTML = options.join('');
+  try {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const videoDevices = devices.filter(device => device.kind === 'videoinput');
+    console.log('videoDevices', videoDevices)
+    let x = videoDevices.length;
+    let y = videoDevices[0].label;
+    let z = videoDevices[1].label;
+    message.textContent = x + "  " + y + "  " + z
+    const options = videoDevices.map(videoDevice => {
+      return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
+    });
+    cameraOptions.innerHTML = options.join('');
+  } catch (error) {
+    message.textContent = error
+  }
 };
 
 getCameraSelection();
