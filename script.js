@@ -1,8 +1,8 @@
 'use strict';
 
 var videoElement = document.querySelector('video');
-var height = { min: 200, ideal: 250, max: window.innerHeight }
-var width = { min: 250, ideal: 333, max: window.innerWidth - 30 }
+var height = { min: 250, ideal: 250, max: 250 }
+var width = { min: 333, ideal: 333, max: 333 }
 var videoSelect = document.querySelector('select#videoSource');
 
 let overlay = document.getElementById("card-overlayer")
@@ -59,12 +59,12 @@ function gotStream(stream) {
     console.log(overlay)
     overlay.style.width = videoElement.videoWidth + "px";
     overlay.style.height = videoElement.videoHeight + "px";
-    if (isMobile) {
-      videoElement.style.height = "250px"
-      videoElement.style.width = "333px"
-      overlay.style.height = 250 + "px";
-      overlay.style.width = 333 + "px";
-    }
+    // if (isMobile) {
+    //   videoElement.style.height = "250px"
+    //   videoElement.style.width = "333px"
+    //   overlay.style.height = 250 + "px";
+    //   overlay.style.width = 333 + "px";
+    // }
   });
 }
 
