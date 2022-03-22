@@ -6,6 +6,7 @@ const video = document.querySelector('video');
 const canvas = document.querySelector('canvas');
 const screenshotImage = document.querySelector('img');
 const buttons = [...controls.querySelectorAll('button')];
+const message = document.getElementById("messageError")
 let streamStarted = false;
 
 const [play, pause, screenshot] = buttons;
@@ -32,7 +33,7 @@ cameraOptions.onchange = () => {
       exact: cameraOptions.value
     }
   };
-  console.log('updatedConstraints', updatedConstraints)
+
   startStream(updatedConstraints);
 };
 
@@ -72,12 +73,13 @@ pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
 
 const startStream = async (constraints) => {
-  console.log('run')
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video
-  });
-  console.log('stream', stream)
-  handleStream(stream);
+  try {
+    console.log('constraints', constraints)
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleStream(stream);
+  } catch (error) {
+    message.textContent = error
+  }
 };
 
 
