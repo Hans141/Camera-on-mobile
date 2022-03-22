@@ -27,13 +27,12 @@ const constraints = {
 };
 
 cameraOptions.onchange = () => {
+  console.log('run on change')
   const updatedConstraints = {
     ...constraints,
-    deviceId: {
-      exact: cameraOptions.value
-    }
+    deviceId: cameraOptions.value
   };
-
+  console.log('updatedConstraints', updatedConstraints)
   startStream(updatedConstraints);
 };
 
@@ -74,8 +73,13 @@ screenshot.onclick = doScreenshot;
 
 const startStream = async (constraints) => {
   try {
-    console.log('constraints', constraints)
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    // console.log('constraints', constraints)
+    console.log('cameraOptions.value', cameraOptions.value)
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId: cameraOptions.value
+      }
+    });
     handleStream(stream);
   } catch (error) {
     message.textContent = error
@@ -84,6 +88,7 @@ const startStream = async (constraints) => {
 
 
 const handleStream = (stream) => {
+  console.log('stream', stream)
   video.srcObject = stream;
   play.classList.add('d-none');
   pause.classList.remove('d-none');
@@ -91,7 +96,9 @@ const handleStream = (stream) => {
 
 };
 
-
+// navigator.mediaDevices.addEventListener("devicechange", event => {
+//   console.log('first', first)
+// })
 const getCameraSelection = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
