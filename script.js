@@ -1,7 +1,8 @@
 'use strict';
 
 var videoElement = document.querySelector('video');
-
+var height =  {min: 720, ideal: 1080, max: 1440}
+var width =  {min: 1280, ideal: 1920, max: 2560}
 var videoSelect = document.querySelector('select#videoSource');
 
 let overlay = document.getElementById("card-overlayer")
@@ -37,6 +38,9 @@ function getStream() {
   const constraints = {
     video: { deviceId: videoSource ? { exact: videoSource } : undefined }
   };
+  // console.log(constraints);
+  let x = JSON.stringify(constraints);
+  document.getElementsByClassName("noti")[0].textContent = x
   return navigator.mediaDevices.getUserMedia(constraints).
     then(gotStream).catch(handleError);
 }
